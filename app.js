@@ -1,42 +1,40 @@
 
-//let oneEuroIs = {
-  //  "JPY": Number.parseFloat(156.5).toFixed(2), // japan yen
-    //"USD": Number.parseFloat(1.07).toFixed(2), // us dollar
-    //"GBP": Number.parseFloat(0.87).toFixed(2), // british pound
-//}
 
-let JPY = Number.parseFloat(156.5);
+// Esta es mi función que suma dos números
+const sum = (a,b) => {
+    return a + b
+}
 
-let USD = Number.parseFloat(1.07);
+// Solo un registro en consola para nosotros
+console.log(sum(7,3))
 
-let GBP = Number.parseFloat(0.87);
+// Exporta la función para usarla en otros archivos 
+// (similar a la palabra clave "export" cuando se usa webpack)
 
-function fromDollarToYen(dollar) {
 
-    let yenes = USD * dollar * JPY; 
-
-    return yenes;
+let oneEuroIs = {
+    "JPY": 156.5, // japan yen
+    "USD": 1.07, // us dollar
+    "GBP": 0.87, // british pound
 }
 
 function fromEuroToDollar(euros){
-
-    let dolares = USD * euros;
-
-    return dolares;
+    let dollars = euros * oneEuroIs.USD
+    return dollars;
 }
 
-function fromYenToPound(Yen){
-
-    let pound = JPY * Yen * GBP;
-
-    return pound;
-
+function fromDollarToYen(dollars){
+    let euros = dollars / oneEuroIs.USD;
+    let yenes = euros * oneEuroIs.JPY;
+        return yenes;
 }
 
-console.log(fromDollarToYen(15));
-console.log(fromEuroToDollar(25));
-console.log(fromYenToPound(35));
+function fromYenToPound(yenes){
+    let euros = yenes / oneEuroIs.JPY;
+    let pounds = euros * oneEuroIs.GBP;
+    return pounds;
+}
 
-module.exports = { fromDollarToYen };
-module.exports = { fromEuroToDollar };
-module.exports = { fromYenToPound };
+
+
+module.exports = { sum ,fromDollarToYen, fromEuroToDollar, fromYenToPound };

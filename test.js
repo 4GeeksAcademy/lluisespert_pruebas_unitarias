@@ -1,31 +1,40 @@
 
 
-const { fromDollarToYen } = require ('./app.js');
 
-test('adds 156 * 1.07 * 15 to equal 2511.8250000000003', () => {
+const { sum, fromEuroToDollar, fromYenToPound, fromDollarToYen } = require('./app.js');
 
-    let total = fromDollarToYen(15);
 
-    expect(total).toBe(2511.8250000000003);
+test('adds 14 + 9 to equal 23', () => {
+   
+    let total = sum(14, 9);
 
+    expect(total).toBe(23);
 });
 
-const { fromEuroToDollar } = require ('./app.js');
 
-test ('25 * 1.07 to equal 26.75', () => {
+test("One euro should be 1.07 dollars",  () => {
 
-    let total = fromEuroToDollar(25);
+    const dollars = fromEuroToDollar(3.5).toFixed(2);
 
-    expect(total).toBe(26.75);
+    const expected = (3.5 * 1.07).toFixed(2);
 
+    expect(dollars).toBe(expected);
 });
 
-const { fromYenToPound } = require ('./app.js');
+test("One dollar should be 145.26 yen",  () => {
 
-test ('156.5 * 35 * 0.87 to equal 4765.425', () => {
+    const yenes = fromDollarToYen(10).toFixed(2);
 
-    let total = fromYenToPound(35);
+    const expected = ((10 / 1.07) * 156.50).toFixed(2); 
 
-    expect(total).toBe(4765.425);
+    expect(yenes).toBe(expected); 
+});
 
+test("One yen should be 0.0055 pound",  () => {
+
+    const pounds = fromYenToPound(20).toFixed(2);
+
+    const expected = ((20 / 156.5) * 0.87).toFixed(2);
+
+    expect(pounds).toBe(expected); 
 });
